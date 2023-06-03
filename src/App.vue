@@ -3,6 +3,7 @@
   import Movie from './components/Movie.vue';
 
   const movieStore = useMovieStore();
+  const setActiveTab = (value) => movieStore.setActiveTab(value);
 </script>
 
 <template>
@@ -19,12 +20,14 @@
       <button
         class="btn"
         :class="{ btn_green: movieStore.activeTab === 1 }"
+        @click="setActiveTab(1)"
       >
         Favorite
       </button>
       <button
         class="btn"
         :class="{ btn_green: movieStore.activeTab === 2 }"
+        @click="setActiveTab(2)"
       >
         Search
       </button>
