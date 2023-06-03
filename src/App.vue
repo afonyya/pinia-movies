@@ -33,7 +33,13 @@
       v-if="movieStore.activeTab === 1"
       class="movies"
     >
-      <h3>All Movies</h3>
+      <h3>Watched Movies (count: {{ movieStore.watchedMoviesCount }})</h3>
+      <Movie
+        v-for="movie in movieStore.watchedMovies"
+        :key="movie.id"
+        :movie="movie"
+      />
+      <h3>All Movies (count: {{ movieStore.moviesCount }})</h3>
       <Movie
         v-for="movie in movieStore.movies"
         :key="movie.id"
