@@ -9,7 +9,7 @@ To ensure the proper functionality of this project, you need to get an API key -
 Once you get your key, you need to create a `.env` file in the project's root, which should contain the `VITE_API_KEY` key with the value of the API key you received.
 
 
-## Run project
-`bash
+## Run
+```bash
   npm run dev
-`
+```
