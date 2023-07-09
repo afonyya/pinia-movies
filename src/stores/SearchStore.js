@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
+import { searchMovies } from '../api/search';
 import { useMovieStore } from './MovieStore';
-
-const url = `${import.meta.env.VITE_API_URL}/3/search/movie`;
+import { TABS } from '../helpers/tabs';
 
 export const useSearchStore = defineStore('searchStore', {
   state: () => ({
@@ -9,21 +9,15 @@ export const useSearchStore = defineStore('searchStore', {
     movies: [],
   }),
   actions: {
-    async getMovies(query) {
+    async searchMovies(query) {
       this.loader = true;
-      const urlSearchParams = new URLSearchParams({
-        api_key: import.meta.env.VITE_API_KEY,
-        query,
-      });
-      const res = await fetch(`${url}?${urlSearchParams}`);
-      const data = await res.json();
-      this.movies = data.results;
+      this.movies = await searchMovies(query);
       this.loader = false;
     },
     addMovie(movie) {
       const movieStore = useMovieStore();
       movieStore.movies.unshift({ ...movie, isWatched: false });
-      movieStore.activeTab = 1;
+      movieStore.activeTab = TABS.FAVORITE;
     },
   },
 });

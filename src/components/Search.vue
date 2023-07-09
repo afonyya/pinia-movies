@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <form @submit.prevent="searchStore.getMovies(searchQuery)">
+  <form @submit.prevent="searchStore.searchMovies(searchQuery)">
     <input
       v-model="searchQuery"
       type="text"

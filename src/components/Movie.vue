@@ -20,13 +20,20 @@
 <template>
   <div class="movie">
     <img
-      :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`"
-      :alt="movie.original_title"
+      v-if="movie.posterPath"
+      :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.posterPath}`"
+      :alt="movie.originalTitle"
       class="movie-img"
     />
+    <div
+      v-else
+      class="movie-img-empty"
+    >
+      Not found
+    </div>
     <div>
       <div class="movie-name">
-        {{ movie.original_title }} ({{ movie.release_date }})
+        {{ movie.originalTitle }} ({{ movie.releaseDate }})
       </div>
       <span class="movie-overview">
         {{ movie.overview }}
@@ -82,6 +89,11 @@
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
+  }
+  .movie-img-empty {
+    width: 200px;
+    height: 200px;
+    text-align: center;
   }
   .movie-name {
     display: flex;

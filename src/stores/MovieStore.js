@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
+import { TABS } from '../helpers/tabs';
 
 export const useMovieStore = defineStore('movieStore', {
   state: () => ({
     movies: [],
-    activeTab: 1,
+    activeTab: TABS.FAVORITE,
   }),
   getters: {
     watchedMovies() {
