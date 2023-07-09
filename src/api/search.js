@@ -1,4 +1,4 @@
-import { url } from './';
+const url = `${import.meta.env.VITE_API_URL}/3/search/movie`;
 
 export const fetchMovies = async (query) => {
   const urlSearchParams = new URLSearchParams({
