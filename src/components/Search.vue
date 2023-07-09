@@ -4,8 +4,8 @@
   import Loader from './Loader.vue';
   import Movie from './Movie.vue';
 
-  const searchStore = useSearchStore();
   const searchQuery = ref('');
+  const searchStore = useSearchStore();
 </script>
 
 <template>

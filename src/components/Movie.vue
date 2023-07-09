@@ -1,5 +1,6 @@
 <script setup>
   import { useMovieStore } from '../stores/MovieStore';
+  import { useSearchStore } from '../stores/SearchStore';
 
   const props = defineProps({
     movie: {
@@ -11,9 +12,9 @@
       default: false,
     },
   });
+
   const movieStore = useMovieStore();
-  const toggleIsWatched = () => movieStore.toggleIsWatched(props.movie.id);
-  const deleteMovie = () => movieStore.deleteMovie(props.movie.id);
+  const searchStore = useSearchStore();
 </script>
 
 <template>
@@ -36,14 +37,14 @@
       >
         <button
           class="btn movie-buttons-watched"
-          @click="toggleIsWatched"
+          @click="movieStore.toggleIsWatched(movie.id)"
         >
           <span v-if="!movie.isWatched">Watched</span>
           <span v-else>Unwatched</span>
         </button>
         <button
           class="btn movie-buttons-delete"
-          @click="deleteMovie"
+          @click="movieStore.deleteMovie(movie.id)"
         >
           Delete
         </button>
@@ -52,7 +53,12 @@
         v-else
         class="movie-buttons"
       >
-        <button class="btn btn_green">Add</button>
+        <button
+          class="btn btn_green"
+          @click="searchStore.addMovie(movie)"
+        >
+          Add
+        </button>
       </div>
     </div>
   </div>
