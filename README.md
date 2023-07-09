@@ -1,7 +1,15 @@
-# Vue 3 + Vite
+# Pinia Movies
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is my first exposure to the [Pinia](https://pinia.vuejs.org) store library.
 
-## Recommended IDE Setup
+## API
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This project uses The Movie Database (TMDB) API.
+To ensure the proper functionality of this project, you need to get an API key - https://developer.themoviedb.org/docs.
+Once you get your key, you need to create a `.env` file in the project's root, which should contain the `VITE_API_KEY` key with the value of the API key you received.
+
+
+## Run project
+`bash
+  npm run dev
+`
