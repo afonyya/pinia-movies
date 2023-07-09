@@ -1,8 +1,21 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import localStorageController from '../helpers/localStorageController';
 
 export const useFavoriteStore = defineStore('favoriteStore', () => {
   const movies = ref([]);
+
+  const moviesLS = localStorageController.movies.get();
+  if (moviesLS) {
+    movies.value = moviesLS;
+  }
+  watch(
+    () => movies,
+    (value) => {
+      localStorageController.movies.set(value.value);
+    },
+    { deep: true },
+  );
 
   const watchedMovies = computed(() =>
     movies.value.filter(({ isWatched }) => isWatched),
