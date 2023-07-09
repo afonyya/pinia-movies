@@ -11,5 +11,5 @@ Once you get your key, you need to create a `.env` file in the project's root, w
 
 ## Run
 ```bash
-  npm run dev
+npm run dev
 ```
