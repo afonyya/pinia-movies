@@ -1,10 +1,12 @@
 <script setup>
   import { useFavoriteStore } from './stores/FavoriteStore';
+  import { useTabsStore } from './stores/TabsStore';
   import Movie from './components/Movie.vue';
   import Search from './components/Search.vue';
   import { TABS } from './helpers/tabs';
 
   const favoriteStore = useFavoriteStore();
+  const tabsStore = useTabsStore();
 </script>
 
 <template>
@@ -20,21 +22,21 @@
     <div class="tabs">
       <button
         class="btn"
-        :class="{ btn_green: favoriteStore.activeTab === TABS.FAVORITE }"
-        @click="favoriteStore.setActiveTab(TABS.FAVORITE)"
+        :class="{ btn_green: tabsStore.tab === TABS.FAVORITE }"
+        @click="tabsStore.setTab(TABS.FAVORITE)"
       >
         Favorite
       </button>
       <button
         class="btn"
-        :class="{ btn_green: favoriteStore.activeTab === TABS.SEARCH }"
-        @click="favoriteStore.setActiveTab(TABS.SEARCH)"
+        :class="{ btn_green: tabsStore.tab === TABS.SEARCH }"
+        @click="tabsStore.setTab(TABS.SEARCH)"
       >
         Search
       </button>
     </div>
     <div
-      v-if="favoriteStore.activeTab === TABS.FAVORITE"
+      v-if="tabsStore.tab === TABS.FAVORITE"
       class="movies"
     >
       <h3>Watched Movies (count: {{ favoriteStore.watchedMoviesCount }})</h3>
@@ -51,7 +53,7 @@
       />
     </div>
     <div
-      v-else-if="favoriteStore.activeTab === TABS.SEARCH"
+      v-else-if="tabsStore.tab === TABS.SEARCH"
       class="search"
     >
       <Search />

@@ -5,11 +5,19 @@
   import Movie from './Movie.vue';
 
   const searchQuery = ref('');
+  const isLoading = ref(false);
+
   const searchStore = useSearchStore();
+
+  const onSubmit = async () => {
+    isLoading.value = true;
+    await searchStore.searchMovies(searchQuery.value);
+    isLoading.value = false;
+  };
 </script>
 
 <template>
-  <form @submit.prevent="searchStore.searchMovies(searchQuery)">
+  <form @submit.prevent="onSubmit">
     <input
       v-model="searchQuery"
       type="text"
@@ -17,7 +25,7 @@
       placeholder="Input movie"
     />
   </form>
-  <Loader v-if="searchStore.isLoading" />
+  <Loader v-if="isLoading" />
   <template v-else>
     <Movie
       v-for="movie in searchStore.movies"

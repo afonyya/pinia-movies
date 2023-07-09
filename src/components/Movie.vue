@@ -46,8 +46,8 @@
           class="btn movie-buttons-watched"
           @click="favoriteStore.toggleIsWatched(movie.id)"
         >
-          <span v-if="!movie.isWatched">Watched</span>
-          <span v-else>Unwatched</span>
+          <template v-if="!movie.isWatched">Watched</template>
+          <template v-else>Unwatched</template>
         </button>
         <button
           class="btn movie-buttons-delete"
