@@ -1,5 +1,5 @@
 <script setup>
-  import { useMovieStore } from '../stores/MovieStore';
+  import { useFavoriteStore } from '../stores/FavoriteStore';
   import { useSearchStore } from '../stores/SearchStore';
 
   const props = defineProps({
@@ -13,7 +13,7 @@
     },
   });
 
-  const movieStore = useMovieStore();
+  const favoriteStore = useFavoriteStore();
   const searchStore = useSearchStore();
 </script>
 
@@ -44,14 +44,14 @@
       >
         <button
           class="btn movie-buttons-watched"
-          @click="movieStore.toggleIsWatched(movie.id)"
+          @click="favoriteStore.toggleIsWatched(movie.id)"
         >
           <span v-if="!movie.isWatched">Watched</span>
           <span v-else>Unwatched</span>
         </button>
         <button
           class="btn movie-buttons-delete"
-          @click="movieStore.deleteMovie(movie.id)"
+          @click="favoriteStore.deleteMovie(movie.id)"
         >
           Delete
         </button>
@@ -62,7 +62,7 @@
       >
         <button
           class="btn btn_green"
-          @click="searchStore.addMovie(movie)"
+          @click="searchStore.addToFavorite(movie)"
         >
           Add
         </button>

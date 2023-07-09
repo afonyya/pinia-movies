@@ -1,10 +1,10 @@
 <script setup>
-  import { useMovieStore } from './stores/MovieStore';
+  import { useFavoriteStore } from './stores/FavoriteStore';
   import Movie from './components/Movie.vue';
   import Search from './components/Search.vue';
   import { TABS } from './helpers/tabs';
 
-  const movieStore = useMovieStore();
+  const favoriteStore = useFavoriteStore();
 </script>
 
 <template>
@@ -20,38 +20,38 @@
     <div class="tabs">
       <button
         class="btn"
-        :class="{ btn_green: movieStore.activeTab === TABS.FAVORITE }"
-        @click="movieStore.setActiveTab(TABS.FAVORITE)"
+        :class="{ btn_green: favoriteStore.activeTab === TABS.FAVORITE }"
+        @click="favoriteStore.setActiveTab(TABS.FAVORITE)"
       >
         Favorite
       </button>
       <button
         class="btn"
-        :class="{ btn_green: movieStore.activeTab === TABS.SEARCH }"
-        @click="movieStore.setActiveTab(TABS.SEARCH)"
+        :class="{ btn_green: favoriteStore.activeTab === TABS.SEARCH }"
+        @click="favoriteStore.setActiveTab(TABS.SEARCH)"
       >
         Search
       </button>
     </div>
     <div
-      v-if="movieStore.activeTab === TABS.FAVORITE"
+      v-if="favoriteStore.activeTab === TABS.FAVORITE"
       class="movies"
     >
-      <h3>Watched Movies (count: {{ movieStore.watchedMoviesCount }})</h3>
+      <h3>Watched Movies (count: {{ favoriteStore.watchedMoviesCount }})</h3>
       <Movie
-        v-for="movie in movieStore.watchedMovies"
+        v-for="movie in favoriteStore.watchedMovies"
         :key="movie.id"
         :movie="movie"
       />
-      <h3>All Movies (count: {{ movieStore.moviesCount }})</h3>
+      <h3>All Movies (count: {{ favoriteStore.moviesCount }})</h3>
       <Movie
-        v-for="movie in movieStore.movies"
+        v-for="movie in favoriteStore.movies"
         :key="movie.id"
         :movie="movie"
       />
     </div>
     <div
-      v-else-if="movieStore.activeTab === TABS.SEARCH"
+      v-else-if="favoriteStore.activeTab === TABS.SEARCH"
       class="search"
     >
       <Search />

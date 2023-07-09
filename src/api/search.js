@@ -1,6 +1,6 @@
 import { url } from './';
 
-export const searchMovies = async (query) => {
+export const fetchMovies = async (query) => {
   const urlSearchParams = new URLSearchParams({
     api_key: import.meta.env.VITE_API_KEY,
     query,

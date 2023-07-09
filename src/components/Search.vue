@@ -17,7 +17,7 @@
       placeholder="Input movie"
     />
   </form>
-  <Loader v-if="searchStore.loader" />
+  <Loader v-if="searchStore.isLoading" />
   <template v-else>
     <Movie
       v-for="movie in searchStore.movies"
