@@ -13,6 +13,6 @@ VITE_API_KEY=your_key
 ```
 
 ## Run
-```zsh
+```bash
 npm run dev
 ```
