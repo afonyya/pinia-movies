@@ -1,6 +1,7 @@
 <script setup>
   import { useMovieStore } from './stores/MovieStore';
   import Movie from './components/Movie.vue';
+  import Search from './components/Search.vue';
 
   const movieStore = useMovieStore();
   const setActiveTab = (value) => movieStore.setActiveTab(value);
@@ -53,7 +54,7 @@
       v-else-if="movieStore.activeTab === 2"
       class="search"
     >
-      Search
+      <Search />
     </div>
   </main>
 </template>

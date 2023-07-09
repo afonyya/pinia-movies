@@ -6,6 +6,10 @@
       type: Object,
       required: true,
     },
+    isSearch: {
+      type: Boolean,
+      default: false,
+    },
   });
   const movieStore = useMovieStore();
   const toggleIsWatched = () => movieStore.toggleIsWatched(props.movie.id);
@@ -15,18 +19,21 @@
 <template>
   <div class="movie">
     <img
-      :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.posterPath}`"
-      :alt="movie.originalTitle"
+      :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`"
+      :alt="movie.original_title"
       class="movie-img"
     />
     <div>
       <div class="movie-name">
-        {{ movie.originalTitle }} ({{ movie.releaseDate }})
+        {{ movie.original_title }} ({{ movie.release_date }})
       </div>
       <span class="movie-overview">
         {{ movie.overview }}
       </span>
-      <div class="movie-buttons">
+      <div
+        v-if="!isSearch"
+        class="movie-buttons"
+      >
         <button
           class="btn movie-buttons-watched"
           @click="toggleIsWatched"
@@ -40,6 +47,12 @@
         >
           Delete
         </button>
+      </div>
+      <div
+        v-else
+        class="movie-buttons"
+      >
+        <button class="btn btn_green">Add</button>
       </div>
     </div>
   </div>
